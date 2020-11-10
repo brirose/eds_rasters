@@ -125,6 +125,8 @@ rast_files <- list.files(here('_spatial'), pattern = '_6933.tif', full.names = T
 rast_stack <- stack(rast_files)
 plot(rast_stack)
 
+##to plot individually plot(stack[[#]])
+
 ### or tell it which rasters already in memory to include in the stack.
 rast_stack <- stack(eez_rast, ss_rast, hcaf_rescaled)
 
@@ -199,7 +201,7 @@ Let's put together an analysis where we can identify priority areas for protecti
 * prioritize areas with high probability of containing both priority shark spp: hammerhead and silky sharks
 * prioritize areas with a high overall shark species richness 
 * protecting areas closer to landing sites (ports) will impose greater costs on fishermen, but areas farther from ports are more difficult to patrol and enforce protection, so we want to find a happy medium.
-    * the cost function might look something like $aD^2_{port} - bD_{port} + c$, where the first term makes it more expensive to protect the farther out you go (e.g., more gas to patrol), and the second term reflects lower costs imposed on local fishermen the farther you go out.
+* the cost function might look something like $aD^2_{port} - bD_{port} + c$, where the first term makes it more expensive to protect the farther out you go (e.g., more gas to patrol), and the second term reflects lower costs imposed on local fishermen the farther you go out.
 
 So we can write this as a rough equation like this, where we want to maximize the outcome:
 $$Priority = \frac{P_{hh} \times P_{ss} \times \text{(relative species richness)}^\alpha}{\text{(cost function)}^\beta}$$
